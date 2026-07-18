@@ -236,6 +236,15 @@
 .player-screen{overflow:hidden;border-radius:18px;background:#000;aspect-ratio:9/16}
 .player-screen iframe{width:100%;height:100%;border:0}
 .modern-btn{width:100%;margin-top:16px;padding:13px;border:none;border-radius:14px;background:linear-gradient(90deg,#10b981,#059669);color:#fff;font-weight:600}
+.video-main-title{
+    margin:16px 4px 0;
+    color:var(--text-title);
+    font-size:18px;
+    font-weight:700;
+    line-height:1.4;
+    text-align:left;
+}
+
 
 </style>
 </head>
@@ -243,7 +252,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Baddies<span>Hub</span></a>
+            <a class="navbar-brand" href="index.html" id="siteTitle">BaddiesHub</a>
             
             <div class="d-flex align-items-center gap-2 order-lg-last">
                 <button class="theme-toggle-btn" onclick="toggleTheme()" title="Ganti Tema">
@@ -263,7 +272,14 @@
     </nav>
 
     
-<div class="container"><div class="player-frame"><div class="player-screen"><iframe id="mainVideoFrame" src="" allowfullscreen allow="autoplay"></iframe></div><button class="modern-btn" onclick="window.location.href='https://tautan-kita.com'">See More Video</button></div></div>
+<div class="container">
+    <div class="player-frame">
+        <div class="player-screen">
+            <iframe id="mainVideoFrame" src="" allowfullscreen allow="autoplay"></iframe>
+        </div>
+        <button class="modern-btn" onclick="window.location.href='https://tautan-kita.com'">See More Video</button>
+    </div>
+</div>
 <footer class="premium-web-footer">
 
         <div class="container">
@@ -339,11 +355,13 @@
 
                 if (targetVideo) {
                     renderMainTheater(targetVideo);
+                    document.getElementById('siteTitle').textContent = targetVideo.title || 'BaddiesHub';
                     renderAsideRecommendations(currentId);
                 } else {
                     // Proteksi jika ID tidak valid, arahkan ke video pertama yang ada
                     if(fullDatabase.length > 0) {
                         renderMainTheater(fullDatabase[0]);
+                        document.getElementById('siteTitle').textContent = fullDatabase[0].title || 'BaddiesHub';
                         renderAsideRecommendations(fullDatabase[0].id);
                     }
                 }
@@ -355,14 +373,14 @@
         // 4. Suntik Data Video Utama ke HTML Player (Termasuk Deskripsi)
         function renderMainTheater(video) {
             document.getElementById('mainVideoFrame').src = video.url;
-            document.getElementById('mainVideoTitle').innerText = video.title;
+            document.getElementById('mainVideoTitle').textContent = video.title || 'Tanpa Judul';
             document.getElementById('mainVideoAuthor').innerHTML = `<i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>${video.author}`;
             document.getElementById('mainVideoViews').innerHTML = `<i class="fa-regular fa-eye me-1 text-success"></i>${video.views} `;
             
             // Suntik data deskripsi panjang dari json
             document.getElementById('mainVideoDesc').innerText = video.description || 'Tidak ada deskripsi untuk video ini.';
             
-            document.title = `${video.title} - DesaFlix Player`;
+            document.title = 'BaddiesHub';
         }
 
         // 5. Render Daftar Rekomendasi di Samping (Kombinasi Kiri-Kanan Seimbang)
