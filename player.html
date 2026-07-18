@@ -142,7 +142,13 @@
             border-radius: 20px; overflow: hidden; border: 1px solid var(--border-color);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3); margin-bottom: 24px;
         }
-        .video-embed-box iframe { width: 100%; height: 100%; border: none; }
+        .video-embed-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            touch-action: manipulation;
+        }
 
         .player-meta-card {
             background-color: var(--card-bg); border: 1px solid var(--border-color);
@@ -261,7 +267,15 @@
             
             <div class="col-lg-8">
                 <div class="video-embed-box">
-                    <iframe id="mainVideoFrame" src="" allowfullscreen allow="autoplay"></iframe>
+                    <iframe
+    id="mainVideoFrame"
+    src=""
+    allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+    allowfullscreen
+    webkitallowfullscreen
+    mozallowfullscreen
+    referrerpolicy="no-referrer-when-downgrade">
+</iframe>
                 </div>
 
                 <div class="player-meta-card">
