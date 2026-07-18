@@ -384,10 +384,18 @@
         // 4. Suntik Data Video Utama ke HTML Player (Termasuk Deskripsi)
         function renderMainTheater(video) {
             const el=document.getElementById('mainVideoPlayer');
-if(!window.player){window.player=new Plyr(el,{fullscreen:{enabled:true,iosNative:true},controls:['play-large','play','progress','current-time','mute','volume','settings','pip','airplay','fullscreen']});}
-el.poster=video.thumbnail;
-el.src=video.url;
-el.load();
+if(!window.player){
+ window.player=new Plyr(el,{
+  controls:['play-large','play','progress','current-time','duration','mute','volume','settings','fullscreen'],
+  fullscreen:{enabled:true,iosNative:true}
+ });
+}
+window.player.source={
+ type:'video',
+ title:video.title,
+ sources:[{src:video.url,type:'video/mp4'}],
+ poster:video.thumbnail
+};
             document.getElementById('mainVideoTitle').innerText = video.title;
             document.getElementById('mainVideoAuthor').innerHTML = `<i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>${video.author}`;
             document.getElementById('mainVideoViews').innerHTML = `<i class="fa-regular fa-eye me-1 text-success"></i>${video.views} `;
