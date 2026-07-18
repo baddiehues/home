@@ -259,6 +259,30 @@
             }
         }
 
+        /* TOMBOL FULL HD VIDEO */
+        .full-hd-button {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 24px;
+            padding: 12px 28px;
+            background-color: #10b981;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.25s ease;
+        }
+
+        .full-hd-button:hover {
+            background-color: #059669;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+
         .player-meta-card {
             background-color: var(--card-bg); border: 1px solid var(--border-color);
             border-radius: 18px; padding: 24px; margin-bottom: 24px;
@@ -432,6 +456,10 @@
                     </div>
                 </div>
                 </div>
+
+                <a href="https://example.com" class="full-hd-button" id="fullHdButton">
+                    Full HD Video
+                </a>
 
                 <div class="player-meta-card">
                     <h1 class="video-main-title" id="mainVideoTitle">Loading video title ...</h1>
