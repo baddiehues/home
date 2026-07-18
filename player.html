@@ -231,28 +231,13 @@
             .video-embed-box { border-radius: 12px; margin-bottom: 16px; }
             .video-description-box { font-size: 12.5px; padding: 12px; margin-top: 14px; }
         }
-    
-.player-frame{max-width:430px;margin:30px auto;padding:14px;border-radius:24px;background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 30px rgba(16,185,129,.15)}
-.player-screen{overflow:hidden;border-radius:18px;background:#000;aspect-ratio:9/16}
-.player-screen iframe{width:100%;height:100%;border:0}
-.modern-btn{width:100%;margin-top:16px;padding:13px;border:none;border-radius:14px;background:linear-gradient(90deg,#10b981,#059669);color:#fff;font-weight:600}
-.video-main-title{
-    margin:16px 4px 0;
-    color:var(--text-title);
-    font-size:18px;
-    font-weight:700;
-    line-height:1.4;
-    text-align:left;
-}
-
-
-</style>
+    </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html" id="siteTitle">BaddiesHub</a>
+            <a class="navbar-brand" href="index.html">Baddies<span>Hub</span></a>
             
             <div class="d-flex align-items-center gap-2 order-lg-last">
                 <button class="theme-toggle-btn" onclick="toggleTheme()" title="Ganti Tema">
@@ -271,17 +256,43 @@
         </div>
     </nav>
 
-    
-<div class="container">
-    <div class="player-frame">
-        <div class="player-screen">
-            <iframe id="mainVideoFrame" src="" allowfullscreen allow="autoplay"></iframe>
-        </div>
-        <button class="modern-btn" onclick="window.location.href='https://tautan-kita.com'">See More Video</button>
-    </div>
-</div>
-<footer class="premium-web-footer">
+    <div class="container my-4">
+        <div class="row g-4 player-workspace">
+            
+            <div class="col-lg-8">
+                <div class="video-embed-box">
+                    <iframe id="mainVideoFrame" src="" allowfullscreen allow="autoplay"></iframe>
+                </div>
 
+                <div class="player-meta-card">
+                    <h1 class="video-main-title" id="mainVideoTitle">Loading video title ...</h1>
+                    
+                    <div class="video-info-row d-flex justify-content-between align-items-center w-100">
+                        <span class="author-badge" id="mainVideoAuthor">
+                            <i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>--
+                        </span>
+                        <span id="mainVideoViews">
+                            <i class="fa-regular fa-eye me-1 text-success"></i>-- 
+                        </span>
+                    </div>
+
+                    <div class="video-description-box" id="mainVideoDesc">
+                        Loading video description ...
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="aside-heading-wrapper">
+                    <h3 class="aside-heading">More Videos</h3>
+                </div>
+                <div class="recommendation-list" id="asideRecommendationWrapper"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="premium-web-footer">
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-5 col-md-6">
@@ -355,13 +366,11 @@
 
                 if (targetVideo) {
                     renderMainTheater(targetVideo);
-                    document.getElementById('siteTitle').textContent = targetVideo.title || 'BaddiesHub';
                     renderAsideRecommendations(currentId);
                 } else {
                     // Proteksi jika ID tidak valid, arahkan ke video pertama yang ada
                     if(fullDatabase.length > 0) {
                         renderMainTheater(fullDatabase[0]);
-                        document.getElementById('siteTitle').textContent = fullDatabase[0].title || 'BaddiesHub';
                         renderAsideRecommendations(fullDatabase[0].id);
                     }
                 }
@@ -373,14 +382,14 @@
         // 4. Suntik Data Video Utama ke HTML Player (Termasuk Deskripsi)
         function renderMainTheater(video) {
             document.getElementById('mainVideoFrame').src = video.url;
-            document.getElementById('mainVideoTitle').textContent = video.title || 'Tanpa Judul';
+            document.getElementById('mainVideoTitle').innerText = video.title;
             document.getElementById('mainVideoAuthor').innerHTML = `<i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>${video.author}`;
             document.getElementById('mainVideoViews').innerHTML = `<i class="fa-regular fa-eye me-1 text-success"></i>${video.views} `;
             
             // Suntik data deskripsi panjang dari json
             document.getElementById('mainVideoDesc').innerText = video.description || 'Tidak ada deskripsi untuk video ini.';
             
-            document.title = 'BaddiesHub';
+            document.title = `${video.title} - DesaFlix Player`;
         }
 
         // 5. Render Daftar Rekomendasi di Samping (Kombinasi Kiri-Kanan Seimbang)
