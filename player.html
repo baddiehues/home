@@ -237,7 +237,7 @@
 .player-screen iframe{width:100%;height:100%;border:0}
 .modern-btn{width:100%;margin-top:16px;padding:13px;border:none;border-radius:14px;background:linear-gradient(90deg,#10b981,#059669);color:#fff;font-weight:600}
 
-</style>
+.video-thumbnail{position:relative;width:100%;height:100%;cursor:pointer}.video-thumbnail img{width:100%;height:100%;object-fit:cover}.play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px}</style>
 </head>
 <body>
 
@@ -263,7 +263,7 @@
     </nav>
 
     
-<div class="container"><div class="player-frame"><div class="player-screen"><iframe id="mainVideoFrame" src="" allowfullscreen allow="autoplay"></iframe></div><button class="modern-btn" onclick="location.href='index.html'">See More Video</button></div></div>
+<div class="container"><div class="player-frame"><div class="player-screen" id="videoContainer"><div class="video-thumbnail" id="videoThumbnail"><img id="thumbImage" src="" alt="Thumbnail"><div class="play-icon"><i class="fa-solid fa-play"></i></div></div><iframe id="mainVideoFrame" src="" allowfullscreen style="display:none;border:0;width:100%;height:100%;"></iframe></div><button class="modern-btn" onclick="location.href='index.html'">See More Video</button></div></div>
 <footer class="premium-web-footer">
 
         <div class="container">
@@ -353,17 +353,7 @@
         }
 
         // 4. Suntik Data Video Utama ke HTML Player (Termasuk Deskripsi)
-        function renderMainTheater(video) {
-            document.getElementById('mainVideoFrame').src = video.url;
-            document.getElementById('mainVideoTitle').innerText = video.title;
-            document.getElementById('mainVideoAuthor').innerHTML = `<i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>${video.author}`;
-            document.getElementById('mainVideoViews').innerHTML = `<i class="fa-regular fa-eye me-1 text-success"></i>${video.views} `;
-            
-            // Suntik data deskripsi panjang dari json
-            document.getElementById('mainVideoDesc').innerText = video.description || 'Tidak ada deskripsi untuk video ini.';
-            
-            document.title = `${video.title} - DesaFlix Player`;
-        }
+        function renderMainTheater(video){document.getElementById("thumbImage").src=video.thumbnail;document.getElementById("videoThumbnail").onclick=function(){document.getElementById("mainVideoFrame").src=video.url;document.getElementById("mainVideoFrame").style.display="block";document.getElementById("videoThumbnail").style.display="none";};document.title=`${video.title} - DesaFlix Player`;}
 
         // 5. Render Daftar Rekomendasi di Samping (Kombinasi Kiri-Kanan Seimbang)
         function renderAsideRecommendations(excludeId) {
