@@ -142,38 +142,36 @@
             border-radius: 20px; overflow: hidden; border: 1px solid var(--border-color);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3); margin-bottom: 24px;
         }
-        .video-embed-box iframe {
+        .video-embed-box {
+            position: relative;
+            background: #000;
+        }
+
+        .video-embed-box video {
             width: 100%;
             height: 100%;
-            border: none;
             display: block;
+            object-fit: contain;
+            background: #000;
             touch-action: manipulation;
         }
 
-        /* Tombol fullscreen khusus untuk HP */
-        .fullscreen-btn {
-            position: absolute;
-            right: 12px;
-            bottom: 12px;
-            z-index: 10;
-            width: 42px;
-            height: 42px;
-            border: 1px solid rgba(255,255,255,.25);
-            border-radius: 10px;
-            background: rgba(0,0,0,.65);
-            color: #fff;
-            cursor: pointer;
+        /* Frame kontrol HTML5: play/pause, timeline, volume, fullscreen */
+        .video-embed-box video::-webkit-media-controls-panel {
+            background-image: linear-gradient(transparent, rgba(0,0,0,.9));
+        }
+
+        .video-embed-box video::-webkit-media-controls-play-button,
+        .video-embed-box video::-webkit-media-controls-mute-button,
+        .video-embed-box video::-webkit-media-controls-fullscreen-button {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            backdrop-filter: blur(8px);
         }
-        .fullscreen-btn:hover {
-            background: rgba(16,185,129,.85);
-        }
-        .video-embed-box {
-            position: relative;
+
+        /* Kontrol lebih mudah disentuh di layar HP */
+        @media (max-width: 767.98px) {
+            .video-embed-box video {
+                min-height: 220px;
+            }
         }
 
         .player-meta-card {
@@ -293,18 +291,13 @@
             
             <div class="col-lg-8">
                 <div class="video-embed-box">
-                    <iframe
-    id="mainVideoFrame"
-    src=""
-    allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-    allowfullscreen
-    webkitallowfullscreen
-    mozallowfullscreen
-    referrerpolicy="no-referrer-when-downgrade">
-</iframe>
-                    <button class="fullscreen-btn" type="button" onclick="openVideoFullscreen()" aria-label="Fullscreen">
-                        <i class="fa-solid fa-expand"></i>
-                    </button>
+                    <video id="mainVideoFrame"
+                    playsinline
+                    preload="metadata"
+                    controls
+                    controlsList="nodownload">
+                    Browser Anda tidak mendukung HTML5 Video.
+                </video>
                 </div>
 
                 <div class="player-meta-card">
@@ -424,7 +417,9 @@
 
         // 4. Suntik Data Video Utama ke HTML Player (Termasuk Deskripsi)
         function renderMainTheater(video) {
-            document.getElementById('mainVideoFrame').src = video.url;
+            const videoPlayer = document.getElementById('mainVideoFrame');
+            videoPlayer.src = video.url;
+            videoPlayer.load();
             document.getElementById('mainVideoTitle').innerText = video.title;
             document.getElementById('mainVideoAuthor').innerHTML = `<i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>${video.author}`;
             document.getElementById('mainVideoViews').innerHTML = `<i class="fa-regular fa-eye me-1 text-success"></i>${video.views} `;
@@ -467,27 +462,6 @@
                     </a>
                 `;
             });
-        }
-
-        function openVideoFullscreen() {
-            const videoBox = document.querySelector('.video-embed-box');
-            const iframe = document.getElementById('mainVideoFrame');
-
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-                return;
-            }
-
-            const requestFullscreen =
-                videoBox.requestFullscreen ||
-                videoBox.webkitRequestFullscreen ||
-                videoBox.msRequestFullscreen;
-
-            if (requestFullscreen) {
-                requestFullscreen.call(videoBox);
-            } else if (iframe && iframe.webkitEnterFullscreen) {
-                iframe.webkitEnterFullscreen();
-            }
         }
 
         window.onload = initPlayerSystem;
