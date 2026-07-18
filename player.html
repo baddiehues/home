@@ -398,7 +398,10 @@
             asideWrapper.innerHTML = "";
 
             // Saring video agar video yang sedang diputar tidak muncul kembali di daftar samping
-            const filteredRecommendations = fullDatabase.filter(v => v.id != excludeId);
+            const filteredRecommendations = fullDatabase
+    .filter(v => v.id != excludeId)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 4);
 
             if(filteredRecommendations.length === 0) {
                 asideWrapper.innerHTML = `<div class="text-muted small">Tidak ada video rekomendasi lainnya.</div>`;
