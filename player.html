@@ -138,11 +138,16 @@
         .player-workspace { max-width: 1200px; margin: 0 auto 40px auto; }
         
         .video-embed-box {
-            width: 100%; aspect-ratio: 16 / 9; background-color: #000;
-            border-radius: 20px; overflow: hidden; border: 1px solid var(--border-color);
+            position:relative;
+            width:100%;
+            aspect-ratio:16/9;
+            background:#000;
+            border-radius:16px; overflow: hidden; border: 1px solid var(--border-color);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3); margin-bottom: 24px;
         }
-        .video-embed-box iframe { width: 100%; height: 100%; border: none; }
+        .video-embed-box iframe{
+position:absolute;inset:0;width:100%;height:100%;border:none;background:#000;
+}
 
         .player-meta-card {
             background-color: var(--card-bg); border: 1px solid var(--border-color);
@@ -210,7 +215,7 @@
         .bottom-nav-bar {
             position: fixed; bottom: 16px; left: 16px; right: 16px;
             background-color: var(--navbar-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); 
-            border: 1px solid var(--border-color); border-radius: 20px;
+            border: 1px solid var(--border-color); border-radius:16px;
             display: flex; justify-content: space-around; align-items: center; padding: 10px 0; z-index: 1050; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .bottom-nav-item { background: none; border: none; color: var(--text-main); display: flex; flex-direction: column; align-items: center; position: relative; padding: 6px 14px; transition: all 0.3s ease; }
