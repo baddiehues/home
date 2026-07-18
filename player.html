@@ -138,16 +138,11 @@
         .player-workspace { max-width: 1200px; margin: 0 auto 40px auto; }
         
         .video-embed-box {
-            position:relative;
-            width:100%;
-            aspect-ratio:16/9;
-            background:#000;
-            border-radius:16px; overflow: hidden; border: 1px solid var(--border-color);
+            width: 100%; aspect-ratio: 16 / 9; background-color: #000;
+            border-radius: 20px; overflow: hidden; border: 1px solid var(--border-color);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3); margin-bottom: 24px;
         }
-        .video-embed-box iframe{
-position:absolute;inset:0;width:100%;height:100%;border:none;background:#000;
-}
+        .video-embed-box iframe { width: 100%; height: 100%; border: none; }
 
         .player-meta-card {
             background-color: var(--card-bg); border: 1px solid var(--border-color);
@@ -215,7 +210,7 @@ position:absolute;inset:0;width:100%;height:100%;border:none;background:#000;
         .bottom-nav-bar {
             position: fixed; bottom: 16px; left: 16px; right: 16px;
             background-color: var(--navbar-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); 
-            border: 1px solid var(--border-color); border-radius:16px;
+            border: 1px solid var(--border-color); border-radius: 20px;
             display: flex; justify-content: space-around; align-items: center; padding: 10px 0; z-index: 1050; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .bottom-nav-item { background: none; border: none; color: var(--text-main); display: flex; flex-direction: column; align-items: center; position: relative; padding: 6px 14px; transition: all 0.3s ease; }
@@ -266,7 +261,8 @@ position:absolute;inset:0;width:100%;height:100%;border:none;background:#000;
             
             <div class="col-lg-8">
                 <div class="video-embed-box">
-                    <iframe id="mainVideoFrame" src="" allowfullscreen allow="autoplay"></iframe>
+                    <video id="mainVideoPlayer" controls playsinline preload="metadata" controlsList="nodownload" style="width:100%;height:100%;background:#000"></video>
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
                 </div>
 
                 <div class="player-meta-card">
@@ -324,6 +320,7 @@ position:absolute;inset:0;width:100%;height:100%;border:none;background:#000;
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
         let fullDatabase = [];
@@ -386,7 +383,11 @@ position:absolute;inset:0;width:100%;height:100%;border:none;background:#000;
 
         // 4. Suntik Data Video Utama ke HTML Player (Termasuk Deskripsi)
         function renderMainTheater(video) {
-            document.getElementById('mainVideoFrame').src = video.url;
+            const el=document.getElementById('mainVideoPlayer');
+if(!window.player){window.player=new Plyr(el);}
+el.poster=video.thumbnail;
+el.src=video.url;
+el.load();
             document.getElementById('mainVideoTitle').innerText = video.title;
             document.getElementById('mainVideoAuthor').innerHTML = `<i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>${video.author}`;
             document.getElementById('mainVideoViews').innerHTML = `<i class="fa-regular fa-eye me-1 text-success"></i>${video.views} `;
