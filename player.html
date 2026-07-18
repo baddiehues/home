@@ -150,6 +150,32 @@
             touch-action: manipulation;
         }
 
+        /* Tombol fullscreen khusus untuk HP */
+        .fullscreen-btn {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            z-index: 10;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255,255,255,.25);
+            border-radius: 10px;
+            background: rgba(0,0,0,.65);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            backdrop-filter: blur(8px);
+        }
+        .fullscreen-btn:hover {
+            background: rgba(16,185,129,.85);
+        }
+        .video-embed-box {
+            position: relative;
+        }
+
         .player-meta-card {
             background-color: var(--card-bg); border: 1px solid var(--border-color);
             border-radius: 18px; padding: 24px; margin-bottom: 24px;
@@ -276,6 +302,9 @@
     mozallowfullscreen
     referrerpolicy="no-referrer-when-downgrade">
 </iframe>
+                    <button class="fullscreen-btn" type="button" onclick="openVideoFullscreen()" aria-label="Fullscreen">
+                        <i class="fa-solid fa-expand"></i>
+                    </button>
                 </div>
 
                 <div class="player-meta-card">
@@ -438,6 +467,27 @@
                     </a>
                 `;
             });
+        }
+
+        function openVideoFullscreen() {
+            const videoBox = document.querySelector('.video-embed-box');
+            const iframe = document.getElementById('mainVideoFrame');
+
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+                return;
+            }
+
+            const requestFullscreen =
+                videoBox.requestFullscreen ||
+                videoBox.webkitRequestFullscreen ||
+                videoBox.msRequestFullscreen;
+
+            if (requestFullscreen) {
+                requestFullscreen.call(videoBox);
+            } else if (iframe && iframe.webkitEnterFullscreen) {
+                iframe.webkitEnterFullscreen();
+            }
         }
 
         window.onload = initPlayerSystem;
