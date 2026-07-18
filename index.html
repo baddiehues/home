@@ -339,17 +339,21 @@
         </div>
     </nav>
 
-    <div class="container my-4">
-        <div class="layout-switcher-container">
-                    <i class="fa-solid fa-table-cells-large"></i>
-                </button>
-                    <i class="fa-solid fa-list"></i>
-                </button>
-            </div>
-
+    <<div class="container my-4">
+        
         <div class="filter-control-wrapper">
             <div class="category-scroll" id="categoryChipsContainer">
             </div>
+            
+            <div class="layout-switcher-container">
+                <button class="switch-layout-btn" id="btnModeGrid" onclick="changeDisplayMode('grid')" title="Mode Kotak Grid">
+                    <i class="fa-solid fa-table-cells-large"></i>
+                </button>
+                <button class="switch-layout-btn" id="btnModeList" onclick="changeDisplayMode('list')" title="Mode Baris List">
+                    <i class="fa-solid fa-list"></i>
+                </button>
+            </div>
+        </div>
             
             
         </div>
