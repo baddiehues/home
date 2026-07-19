@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="id" data-bs-theme="dark" id="htmlTag">
+<html lang="en-US" data-bs-theme="dark" id="htmlTag">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BaddiesHub</title>
+    <title>Baddiex</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
@@ -50,7 +50,7 @@
         h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; }
         a { text-decoration: none; }
 
-        /* HEADER & NAVBAR (SAMA DENGAN INDEX) */
+        /* HEADER & NAVBAR */
         .navbar {
             background-color: var(--navbar-bg) !important;
             backdrop-filter: blur(20px) saturate(180%);
@@ -134,7 +134,7 @@
         .theme-toggle-btn:hover { border-color: var(--primary-color); color: var(--primary-color); box-shadow: 0 0 10px var(--primary-glow); }
         .header-avatar { width: 38px; height: 38px; background: linear-gradient(135deg, var(--primary-color), #059669); color: #060913; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; }
 
-        /* PLAYER AREA WORKSPACE */
+        /* PLAYER WORKSPACE */
         .player-workspace { max-width: 1200px; margin: 0 auto 40px auto; }
         
         .video-embed-box {
@@ -234,7 +234,7 @@
             }
         }
 
-        /* Frame kontrol HTML5: play/pause, timeline, volume, fullscreen */
+        /* HTML5 controls: play/pause, timeline, volume, fullscreen */
         .video-embed-box video::-webkit-media-controls-panel {
             background-image: linear-gradient(transparent, rgba(0,0,0,.9));
         }
@@ -245,7 +245,7 @@
             display: flex;
         }
 
-        /* Kontrol lebih mudah disentuh di layar HP */
+        /* Easier controls for mobile touchscreens */
 
 
         /* TOMBOL FULL HD VIDEO */
@@ -281,7 +281,7 @@
         .video-info-row { border-top: 1px solid var(--border-color); padding-top: 16px; }
         .author-badge { font-weight: 600; color: var(--text-title); display: inline-flex; align-items: center; }
 
-        /* WADAH DESKRIPSI VIDEO PREMIUM */
+        /* PREMIUM VIDEO DESCRIPTION BOX */
         .video-description-box {
             margin-top: 20px;
             text-align: justify;
@@ -294,7 +294,7 @@
             color: var(--text-main);
         }
 
-        /* REKOMENDASI PANEL (ASIDE LIST) */
+        /* RECOMMENDATIONS PANEL (ASIDE LIST) */
         .aside-heading-wrapper { 
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -317,7 +317,7 @@
         .rec-title { font-size: 13px; font-weight: 600; color: var(--text-title); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0; }
         .rec-meta { font-size: 11px; opacity: 0.7; display: flex; justify-content: space-between; align-items: center; width: 100%; }
 
-        /* FOOTER (SAMA DENGAN INDEX) */
+        /* FOOTER */
         .premium-web-footer { background-color: var(--footer-bg); border-top: 1px solid var(--border-color); padding: 60px 0 30px 0; margin-top: 60px; transition: background-color 0.3s ease; }
         .footer-brand { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 700; color: var(--text-title); margin-bottom: 16px; }
         .footer-brand span { color: var(--primary-color); }
@@ -334,7 +334,7 @@
 
         @media (max-width: 991.98px) { .premium-web-footer { display: none !important; } }
 
-        /* BOTTOM NAV BAR MOBILE (SAMA DENGAN INDEX) */
+        /* MOBILE BOTTOM NAV BAR */
         .bottom-nav-bar {
             position: fixed; bottom: 16px; left: 16px; right: 16px;
             background-color: var(--navbar-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); 
@@ -351,7 +351,7 @@
 
         @media (min-width: 992px) { .bottom-nav-bar { display: none !important; } }
 
-        /* RESPONSIVE LAYOUT HP UNTUK AREA PLAYER */
+        /* RESPONSIVE MOBILE PLAYER LAYOUT */
         @media (max-width: 767.98px) {
             body {
                 padding-bottom: 95px;
@@ -399,10 +399,10 @@
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Baddies<span>Hub</span></a>
+            <a class="navbar-brand" href="index.html">Baddie<span>x</span></a>
             
             <div class="d-flex align-items-center gap-2 order-lg-last">
-                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Ganti Tema">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
                     <i class="fa-solid fa-moon" id="themeIcon"></i>
                 </button>
                 <div class="header-avatar d-none d-sm-flex">BH</div>
@@ -429,7 +429,7 @@
                         webkit-playsinline
                         preload="metadata"
                         disablepictureinpicture>
-                        Browser Anda tidak mendukung HTML5 Video.
+                        Your browser does not support HTML5 video.
                     </video>
 
                     <div class="mobile-video-controls">
@@ -438,7 +438,7 @@
                         </button>
 
                         <div class="video-progress-wrap">
-                            <input id="videoProgress" type="range" min="0" max="100" value="0" aria-label="Progress video">
+                            <input id="videoProgress" type="range" min="0" max="100" value="0" aria-label="Video progress">
                         </div>
 
                         <button class="video-control-btn" id="muteBtn" type="button" aria-label="Volume">
@@ -453,7 +453,7 @@
                 </div>
 
                 <a href="https://baddiehues.github.io/home/" class="full-hd-button" id="fullHdButton">
-                    See More Video
+                    See More Videos
                 </a>
 
                 <div class="player-meta-card">
@@ -502,7 +502,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <div class="footer-bottom-bar">&copy; 2026 <strong>BaddiesHub</strong>. All Rights Reserved.</div>
+                    <div class="footer-bottom-bar">&copy; 2026 <strong>Baddiex</strong>. All Rights Reserved.</div>
                 </div>
             </div>
         </div>
@@ -515,7 +515,7 @@
     <script>
         let fullDatabase = [];
 
-        // 1. Sinkronisasi Awal Setelan Tema dari LocalStorage Pengguna
+        // 1. Load the saved theme preference from LocalStorage
         function applySavedTheme() {
             const savedTheme = localStorage.getItem('themePreference') || 'dark';
             document.getElementById('htmlTag').setAttribute('data-bs-theme', savedTheme);
@@ -538,13 +538,13 @@
             }
         }
 
-        // 2. Deteksi Parameter ID Video dari URL (Contoh: player.html?id=2)
+        // 2. Get the video ID from the URL (Example: player.html?id=2)
         function getVideoIdFromUrl() {
             const params = new URLSearchParams(window.location.search);
             return params.get('id');
         }
 
-        // 3. Tarik Database videos.json dan Jalankan Render
+        // 3. Load videos.json and render the player
         async function initPlayerSystem() {
             applySavedTheme();
             const currentId = getVideoIdFromUrl();
@@ -553,14 +553,14 @@
                 const response = await fetch('videos.json');
                 fullDatabase = await response.json();
 
-                // Cari video yang ID-nya cocok dengan parameter URL
+                // Find the video matching the URL parameter
                 const targetVideo = fullDatabase.find(v => v.id == currentId);
 
                 if (targetVideo) {
                     renderMainTheater(targetVideo);
                     renderAsideRecommendations(currentId);
                 } else {
-                    // Proteksi jika ID tidak valid, arahkan ke video pertama yang ada
+                    // If the ID is invalid, load the first available video
                     if(fullDatabase.length > 0) {
                         renderMainTheater(fullDatabase[0]);
                         renderAsideRecommendations(fullDatabase[0].id);
@@ -571,7 +571,7 @@
             }
         }
 
-        // 4. Suntik Data Video Utama ke HTML Player (Termasuk Deskripsi)
+        // 4. Render the main video data into the player
         function renderMainTheater(video) {
             const videoPlayer = document.getElementById('mainVideoFrame');
             videoPlayer.src = video.url;
@@ -580,25 +580,25 @@
             document.getElementById('mainVideoAuthor').innerHTML = `<i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>${video.author}`;
             document.getElementById('mainVideoViews').innerHTML = `<i class="fa-regular fa-eye me-1 text-success"></i>${video.views} `;
             
-            // Suntik data deskripsi panjang dari json
-            document.getElementById('mainVideoDesc').innerText = video.description || 'Tidak ada deskripsi untuk video ini.';
+            // Load the full description from JSON
+            document.getElementById('mainVideoDesc').innerText = video.description || 'No description available for this video.';
             
             document.title = `${video.title}`;
         }
 
-        // 5. Render Daftar Rekomendasi di Samping (Kombinasi Kiri-Kanan Seimbang)
+        // 5. Render the recommendations list
         function renderAsideRecommendations(excludeId) {
             const asideWrapper = document.getElementById('asideRecommendationWrapper');
             asideWrapper.innerHTML = "";
 
-            // Saring video agar video yang sedang diputar tidak muncul kembali di daftar samping
+            // Exclude the currently playing video from the recommendations
             const filteredRecommendations = fullDatabase
     .filter(v => v.id != excludeId)
     .sort(() => Math.random() - 0.5)
     .slice(0, 4);
 
             if(filteredRecommendations.length === 0) {
-                asideWrapper.innerHTML = `<div class="text-muted small">Tidak ada video rekomendasi lainnya.</div>`;
+                asideWrapper.innerHTML = `<div class="text-muted small">No more recommended videos available.</div>`;
                 return;
             }
 
@@ -673,11 +673,11 @@
                         video.webkitEnterFullscreen();
                     }
                 } catch (error) {
-                    console.log('Fullscreen tidak tersedia:', error);
+                    console.log('Fullscreen is not available:', error);
                 }
             });
 
-            // Tap video untuk play/pause, cocok untuk Android dan iOS.
+            // Tap the video to play/pause on Android and iOS.
             video.addEventListener('click', () => {
                 if (video.paused) video.play();
                 else video.pause();
