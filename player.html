@@ -405,7 +405,7 @@
                 <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
                     <i class="fa-solid fa-moon" id="themeIcon"></i>
                 </button>
-                <div class="header-avatar d-none d-sm-flex">US</div>
+                <div class="header-avatar d-none d-sm-flex">BH</div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#desaFlixNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -578,7 +578,10 @@
             videoPlayer.load();
             document.getElementById('mainVideoTitle').innerText = video.title;
             document.getElementById('mainVideoAuthor').innerHTML = `<i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>${video.author}`;
-            document.getElementById('mainVideoViews').innerHTML = `<i class="fa-regular fa-eye me-1 text-success"></i>${video.views} `;
+            const randomViews = getRandomViews(video.id, video.views);
+
+            document.getElementById('mainVideoViews').innerHTML =
+                `<i class="fa-regular fa-eye me-1 text-success"></i>${randomViews.toLocaleString('en-US')} `;
             
             // Load the full description from JSON
             document.getElementById('mainVideoDesc').innerText = video.description || 'No description available for this video.';
@@ -587,6 +590,19 @@
         }
 
         // 5. Render the recommendations list
+        // Generate random views and keep them stable in the same browser
+        function getRandomViews(videoId, baseViews) {
+            const storageKey = `video_views_${videoId}`;
+            let views = localStorage.getItem(storageKey);
+
+            if (!views) {
+                views = Number(baseViews) + Math.floor(Math.random() * 50000);
+                localStorage.setItem(storageKey, views);
+            }
+
+            return Number(views);
+        }
+
         function renderAsideRecommendations(excludeId) {
             const asideWrapper = document.getElementById('asideRecommendationWrapper');
             asideWrapper.innerHTML = "";
