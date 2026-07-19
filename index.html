@@ -499,7 +499,20 @@
                 pagingWrapper.style.setProperty('display', 'flex', 'important');
             }
         }
-function renderCinemaGrid(data) {
+        // Generate random views and keep them stable in the same browser
+        function getRandomViews(videoId, baseViews) {
+            const storageKey = `video_views_${videoId}`;
+            let views = localStorage.getItem(storageKey);
+
+            if (!views) {
+                views = Number(baseViews || 0) + Math.floor(Math.random() * 50000);
+                localStorage.setItem(storageKey, views);
+            }
+
+            return Number(views);
+        }
+
+        function renderCinemaGrid(data) {
     const gridContainer = document.getElementById('cinemaGridContainer');
     gridContainer.innerHTML = "";
 
@@ -527,7 +540,7 @@ function renderCinemaGrid(data) {
                             <i class="fa-solid fa-circle-user me-1 text-success"></i>${video.author}
                         </span>
                         <span class="meta-views">
-                            <i class="fa-regular fa-eye me-1 text-success"></i>${video.views}
+                            <i class="fa-regular fa-eye me-1 text-success"></i>${getRandomViews(video.id, video.views).toLocaleString('en-US')}
                         </span>
                     </div>
                 </div>
