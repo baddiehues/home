@@ -140,26 +140,14 @@
         .video-embed-box {
             width: 100%;
             aspect-ratio: 16 / 9;
-            background-color: #000;
+            background: #000;
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             margin-top: 32px;
             margin-bottom: 24px;
-        }
-        .video-embed-box {
             position: relative;
-            background: #000;
-        }
-
-        .video-embed-box video {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: contain;
-            background: #000;
-            touch-action: manipulation;
         }
 
         .custom-video-player {
@@ -170,13 +158,18 @@
             overflow: hidden;
         }
 
+        .video-embed-box video,
         .custom-video-player video {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             display: block;
-            object-fit: contain;
+            object-fit: cover;
+            object-position: center center;
             background: #000;
             cursor: pointer;
+            touch-action: manipulation;
         }
 
         .mobile-video-controls {
@@ -253,11 +246,7 @@
         }
 
         /* Kontrol lebih mudah disentuh di layar HP */
-        @media (max-width: 767.98px) {
-            .video-embed-box video {
-                min-height: 220px;
-            }
-        }
+
 
         /* TOMBOL FULL HD VIDEO */
         .full-hd-button {
@@ -386,10 +375,16 @@
                 aspect-ratio: 16 / 9;
             }
 
+            .video-embed-box {
+                aspect-ratio: 16 / 9;
+            }
+
             .video-embed-box video {
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
+                min-height: 0;
+                object-fit: cover;
+                object-position: center center;
             }
 
             .video-description-box {
