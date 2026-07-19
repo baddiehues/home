@@ -611,7 +611,7 @@
             const filteredRecommendations = fullDatabase
     .filter(v => v.id != excludeId)
     .sort(() => Math.random() - 0.5)
-    .slice(0, 4);
+    .slice(0, 5);
 
             if(filteredRecommendations.length === 0) {
                 asideWrapper.innerHTML = `<div class="text-muted small">No more recommended videos available.</div>`;
