@@ -581,7 +581,7 @@
             const randomViews = getRandomViews(video.id, video.views);
 
             document.getElementById('mainVideoViews').innerHTML =
-                `<i class="fa-regular fa-eye me-1 text-success"></i>${randomViews.toLocaleString('en-US')} `;
+                `<i class="fa-regular fa-eye me-1 text-success"></i>${randomViews.toLocaleString('de-DE')} `;
             
             // Load the full description from JSON
             document.getElementById('mainVideoDesc').innerText = video.description || 'No description available for this video.';
@@ -628,7 +628,7 @@
                             <h4 class="rec-title">${video.title}</h4>
                             <div class="rec-meta">
                                 <span><i class="fa-solid fa-circle-user me-1 text-success"></i>${video.author}</span>
-                                <span><i class="fa-regular fa-eye me-1 text-success"></i>${video.views}</span>
+                                <span><i class="fa-regular fa-eye me-1 text-success"></i>${getRandomViews(video.id, video.views).toLocaleString('de-DE')}</span>
                             </div>
                         </div>
                     </a>
